@@ -8,7 +8,7 @@ const asyncHandler = (requestHandler) => {
 
 export {asyncHandler};
 
-//using try catch
+//using try catch optional to above code
 
 //const asyncHandler = () => async;
 //const asyncHandler = (fn) => () => {};
