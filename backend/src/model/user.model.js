@@ -31,7 +31,7 @@ const userSchema = new mongoose.Schema(
     },
     coverImage: {
       type: String, //cloudinary url use here
-      required: true,
+      //required: true,
     },
     watchHistory: [
       {
@@ -53,7 +53,7 @@ const userSchema = new mongoose.Schema(
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
 
-  this.password = bcrypt.hash(this.password, 8);
+  this.password = await bcrypt.hash(this.password, 8);
   next();
 });
 
@@ -65,7 +65,7 @@ userSchema.methods.generateAccessToken = function () {
   return jwt.sign(
     {
       _id: this._id,
-      email: this.email,
+      userEmail: this.userEmail,
       userName: this.userName,
       fullName: this.fullName,
     },
