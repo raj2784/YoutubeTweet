@@ -1,6 +1,6 @@
 import multer from "multer";
 
-// custom middleware
+// custom middle ware
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
