@@ -1,8 +1,8 @@
-import {asyncHandler} from "../utility/asyncHandler";
+import {asyncHandler} from "../utility/asyncHandler.js";
 import mongoose from "mongoose";
-import {APIError} from "../utility/APIError";
-import {APIResponse} from "../utility/APIResponse";
-import {Commnet} from "../model/comment.model";
+import {APIError} from "../utility/APIError.js";
+import {APIResponse} from "../utility/APIResponse.js";
+import {Commnet} from "../model/comment.model.js";
 
 const getVideoComment = asyncHandler(async (req, res) => {
   const {videoId} = req.params;
@@ -11,8 +11,8 @@ const getVideoComment = asyncHandler(async (req, res) => {
 
 const addComment = asyncHandler(async (req, res) => {});
 
-const updateCommnet = asyncHandler(async (req, res) => {});
+const updateComment = asyncHandler(async (req, res) => {});
 
 const deleteComment = asyncHandler(async (req, res) => {});
 
-export {getVideoComment, addComment, updateCommnet, deleteComment};
+export {getVideoComment, addComment, updateComment, deleteComment};

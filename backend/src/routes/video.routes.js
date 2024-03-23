@@ -5,7 +5,9 @@ import {
   getVideoById,
   togglePublishStatus,
   updateVideo,
+  updateVideoDetails,
   deleteVideo,
+  getVideoByUserId,
 } from "../controller/video.controller.js";
 import {verifyJWT} from "../middleware/useAuth.js";
 import {upload} from "../middleware/useMulter.js";
@@ -20,7 +22,11 @@ router
   .post(
     upload.fields([
       {
-        name: videoFile,
+        name: "videoFile",
+        maxCount: 1,
+      },
+      {
+        name: "thumbnail",
         maxCount: 1,
       },
     ]),
@@ -31,7 +37,20 @@ router
   .route("/:videoId")
   .get(getVideoById)
   .delete(deleteVideo)
-  .patch(upload.single("thumbnail"), updateVideo);
+  .patch(updateVideoDetails);
+
+router
+  .route("/updatevideo/:videoId")
+  //.patch(upload.single("videoFile"), updateVideo);
+  .patch(
+    upload.fields([
+      {name: "thumbnail", maxCount: 1},
+      {name: "videoFile", maxCount: 1},
+    ]),
+    updateVideo,
+  );
+
+router.route("/user/:userId").get(getVideoByUserId);
 
 router.route("/toggle/publish/:videoId").patch(togglePublishStatus);
 
